@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import style from "./Layout.module.css"
+import { Outlet } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
 
 export default function Layout() {
   let [counter, setCounter] = useState(0);
@@ -7,7 +10,8 @@ export default function Layout() {
 
   },[]);
   return <>
-    <h1>Layout</h1>
-    <p>lorem12312312341412</p>
+    <NavBar/>
+    <Outlet></Outlet>
+    <Footer/>
   </>;
 }
