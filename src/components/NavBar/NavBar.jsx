@@ -21,7 +21,7 @@ export default function NavBar() {
       </ul>
     </div>
     <div className="">
-       <ul className="flex flex-col lg:flex-row mr-5" items-center>
+       <ul className="flex flex-col lg:flex-row mr-5" >
         <li className="mx-2 py-2 text-sm  font-light"><NavLink className="text-slate-700" to="login">Login</NavLink></li>
         <li className="mx-2 py-2 text-sm  font-light"><NavLink className="text-slate-700" to="register">Register</NavLink></li>
         <li className="mx-2 py-2 text-sm font-light"><NavLink className="text-slate-700" to="products">Log-out</NavLink></li>
