@@ -10,7 +10,7 @@ export default function NavBar() {
   return <>
 <nav className="bg-gray-100  py-2 fixed top-0 left-0 right-0">
   <div className="container mx-auto p-2 justify-between flex flex-col lg:flex-row ">
-    <div className="flex flex-col lg:flex-row ml-5">
+    <div className="flex flex-col lg:flex-row ml-5 items-center">
       <img className="" src={logo} width={110} />
       <ul className="flex flex-col lg:flex-row items-center">
         <li className="mx-2 py-2 text-sm  font-light"><NavLink className="text-slate-700" to="">Home</NavLink></li>

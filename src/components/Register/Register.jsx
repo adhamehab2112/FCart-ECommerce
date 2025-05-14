@@ -8,6 +8,6 @@ export default function Register() {
   },[]);
   return <>
     <h1>Register</h1>
-    <p>lorem12312312341412</p>
+    
   </>;
 }

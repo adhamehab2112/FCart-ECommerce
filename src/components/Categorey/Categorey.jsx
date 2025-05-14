@@ -7,7 +7,7 @@ export default function Categorey() {
 
   },[]);
   return <>
-    <h1>Categorey</h1>
-    <p>lorem12312312341412</p>
+    <h1>Category</h1>
+    
   </>;
 }

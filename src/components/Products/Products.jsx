@@ -8,7 +8,7 @@ export default function Products() {
     <>
       
         <h1>Products</h1>
-        <p>lorem12312312341412</p>
+        
      
     </>
   );

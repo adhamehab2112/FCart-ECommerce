@@ -8,6 +8,5 @@ export default function Brands() {
   },[]);
   return <>
     <h1>Brands</h1>
-    <p>lorem12312312341412</p>
   </>;
 }

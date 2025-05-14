@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import style from "./NotFound.module.css"
-
+import style from "./NotFound.module.css";
+import notFound from "../../assets/error.svg";
 export default function NotFound() {
   let [counter, setCounter] = useState(0);
-  useEffect(()=>{
-
-  },[]);
-  return <>
-    <h1>NotFound</h1>
-    <p>lorem12312312341412</p>
-  </>;
+  useEffect(() => {}, []);
+  return (
+    <>
+      <div className="">
+        <img className="mx-auto" src={notFound} width={500} />
+      </div>
+    </>
+  );
 }

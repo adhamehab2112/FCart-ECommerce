@@ -8,7 +8,7 @@ export default function Home() {
     <>
       
         <h1>Home</h1>
-        <p>lorem12312312341412</p>
+        
       
     </>
   );
