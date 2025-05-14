@@ -8,11 +8,13 @@ export default function Register() {
   //Programmatic Navigation
   let navigate = useNavigate();
   let [creationError , setCreationError] = useState("");
+  let [spinner,setSpinner] = useState(false);
   async function handleRegister(formValues) {
     //formValues object ==> will hold the input values
 
     //console.log(formValues); Data to be sended to backend
     try {
+      setSpinner(true);
       let response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/signup",
         formValues
@@ -24,8 +26,10 @@ export default function Register() {
         navigate("/"); // navigate to home
       } 
     } catch (e) {
+      //e: is the response in case of any failed process
       console.log(e.response.data.message);
       setCreationError(e.response.data.message);
+      setSpinner(false);
     }
   }
 
@@ -75,8 +79,6 @@ export default function Register() {
     onSubmit: handleRegister,
   });
 
-  let [counter, setCounter] = useState(0);
-  useEffect(() => {}, []);
   return (
     <>
       <form
@@ -225,6 +227,7 @@ export default function Register() {
           type="submit"
           className="text-white bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >
+        {spinner&&<i className="fas fa-spinner fa-spin mx-1 "></i>}
           Submit
         </button>
         <p>{creationError&&(<div
