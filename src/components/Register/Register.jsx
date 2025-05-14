@@ -7,20 +7,25 @@ import { useNavigate } from "react-router-dom";
 export default function Register() {
   //Programmatic Navigation
   let navigate = useNavigate();
+  let [creationError , setCreationError] = useState("");
   async function handleRegister(formValues) {
     //formValues object ==> will hold the input values
 
     //console.log(formValues); Data to be sended to backend
-    let { data } = await axios.post(
-      "https://ecommerce.routemisr.com/api/v1/auth/signup",
-      formValues
-    );
-    console.log(data);
-    if (data.message == "success") {
-      //If signup is done => go to home if token is available or to login if token not available
-      navigate("/"); // navigate to home
-    } else {
-      //Error in response
+    try {
+      let response = await axios.post(
+        "https://ecommerce.routemisr.com/api/v1/auth/signup",
+        formValues
+      );
+      console.log(response);
+      if (response.data.message == "success") {
+        //If signup is done => go to home if token is available or to login if token not available
+        console.log(response);
+        navigate("/"); // navigate to home
+      } 
+    } catch (e) {
+      console.log(e.response.data.message);
+      setCreationError(e.response.data.message);
     }
   }
 
@@ -101,7 +106,7 @@ export default function Register() {
 
         {formik.errors.name && formik.touched.name ? (
           <div
-            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
             role="alert"
           >
             {formik.errors.name}
@@ -128,7 +133,7 @@ export default function Register() {
         </div>
         {formik.errors.email && formik.touched.email ? (
           <div
-            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
             role="alert"
           >
             {formik.errors.email}
@@ -155,7 +160,7 @@ export default function Register() {
         </div>
         {formik.errors.phone && formik.touched.phone ? (
           <div
-            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
             role="alert"
           >
             {formik.errors.phone}
@@ -182,7 +187,7 @@ export default function Register() {
 
         {formik.errors.password && formik.touched.password ? (
           <div
-            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
             role="alert"
           >
             {formik.errors.password}
@@ -209,7 +214,7 @@ export default function Register() {
         </div>
         {formik.errors.rePassword && formik.touched.rePassword ? (
           <div
-            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
             role="alert"
           >
             {formik.errors.rePassword}
@@ -222,7 +227,12 @@ export default function Register() {
         >
           Submit
         </button>
+        <p>{creationError&&(<div
+            className="p-4 mb-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+            role="alert"
+          >{creationError}</div>)}</p>
       </form>
+      
     </>
   );
 }
