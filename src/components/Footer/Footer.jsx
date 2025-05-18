@@ -6,11 +6,9 @@ import payPal from "../../assets/PayPal.png";
 import googlePlay from "../../assets/googlePlay.svg";
 import appStore from "../../assets/appStore.svg";
 export default function Footer() {
-  let [counter, setCounter] = useState(0);
-  useEffect(() => {}, []);
   return (
     <>
-      <div className="bg-gray-100 p-10">
+      <div className="bg-gray-100 p-10 flex flex-col w-1/4 md:w-full">
         <h2 className="text-xl">Get the FreshCart App</h2>
         <p className="py-4 text-slate-700">
           We will send you a link, open it on your phone to download the app

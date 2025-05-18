@@ -8,9 +8,9 @@ export default function NavBar() {
 
   },[]);
   return <>
-<nav className="bg-gray-100  py-2 fixed top-0 left-0 right-0">
-  <div className="container mx-auto p-2 justify-between flex flex-col lg:flex-row ">
-    <div className="flex flex-col lg:flex-row ml-5 items-center">
+<nav className="bg-gray-100  py-2 fixed top-0 left-0 right-0 hidden align-middle md:block">
+  <div className="container mx-auto p-2 flex flex-col lg:flex-row justify-between items-center text-center gap-6 ">
+    <div className="flex flex-col lg:flex-row items-center gap-2">
       <img className="" src={logo} width={110} />
       <ul className="flex flex-col lg:flex-row items-center">
         <li className="mx-2 py-2 text-sm  font-light"><NavLink className="text-slate-700" to="">Home</NavLink></li>
@@ -20,7 +20,7 @@ export default function NavBar() {
         <li className="mx-2 py-2 text-sm  font-light"><NavLink className="text-slate-700" to="brands">Brands</NavLink></li>
       </ul>
     </div>
-    <div className="">
+    <div className="flex flex-col items-center gap-2">
        <ul className="flex flex-col lg:flex-row mr-5" >
         <li className="mx-2 py-2 text-sm  font-light"><NavLink className="text-slate-700" to="login">Login</NavLink></li>
         <li className="mx-2 py-2 text-sm  font-light"><NavLink className="text-slate-700" to="register">Register</NavLink></li>
