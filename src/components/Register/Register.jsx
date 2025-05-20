@@ -4,11 +4,14 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../../Context/userContext/UserContext";
+import { useContext } from "react";
 export default function Register() {
   //Programmatic Navigation
+  let { setUserLogin } = useContext(UserContext);
   let navigate = useNavigate();
-  let [creationError , setCreationError] = useState("");
-  let [spinner,setSpinner] = useState(false);
+  let [creationError, setCreationError] = useState("");
+  let [spinner, setSpinner] = useState(false);
   async function handleRegister(formValues) {
     //formValues object ==> will hold the input values
 
@@ -23,8 +26,10 @@ export default function Register() {
       if (response.data.message == "success") {
         //If signup is done => go to home if token is available or to login if token not available
         console.log(response);
+        localStorage.setItem("userToken", response.data.token);
+        setUserLogin(localStorage.getItem("userToken"));
         navigate("/"); // navigate to home
-      } 
+      }
     } catch (e) {
       //e: is the response in case of any failed process
       console.log(e.response.data.message);
@@ -103,7 +108,7 @@ export default function Register() {
             className="peer-focus:font-medium absolute text-sm text-green-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
             Name
-          </label> 
+          </label>
         </div>
 
         {formik.errors.name && formik.touched.name ? (
@@ -227,16 +232,26 @@ export default function Register() {
           type="submit"
           className="text-white bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >
-        {spinner&&<i className="fas fa-spinner fa-spin mx-1 "></i>}
+          {spinner && <i className="fas fa-spinner fa-spin mx-1 "></i>}
           Submit
         </button>
-        <p>{creationError&&(<div
-            className="p-4 mb-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
-            role="alert"
-          >{creationError}</div>)}</p>
-          <p className="mt-4 text-sm font-bold my-3 text-green-600">Already have account? <NavLink className="italic underline" to="/login">Login Now</NavLink></p>
+        <div>
+          {creationError && (
+            <div
+              className="p-4 mb-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+              role="alert"
+            >
+              {creationError}
+            </div>
+          )}
+        </div>
+        <div className="mt-4 text-sm font-bold my-3 text-green-600">
+          Already have account?{" "}
+          <NavLink className="italic underline" to="/login">
+            Login Now
+          </NavLink>
+        </div>
       </form>
-      
     </>
   );
 }

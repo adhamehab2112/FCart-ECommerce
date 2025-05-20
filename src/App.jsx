@@ -10,26 +10,29 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Products from "./components/Products/Products";
 import NotFound from "./components/NotFound/NotFound";
+import UserContextProvider from "./Context/userContext/UserContext";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
 let router = createBrowserRouter([
-  {
+  { 
     path: "",
     element: <Layout />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <ProtectedRoute><Home /></ProtectedRoute> ,
       },
       {
         path: "categories",
-        element: <Categorey />,
+        element: <ProtectedRoute><Categorey /> </ProtectedRoute>,
       },
       {
         path: "brands",
-        element: <Brands />,
+        element:<ProtectedRoute><Brands /></ProtectedRoute> ,
       },
       {
         path: "cart",
-        element: <Cart />,
+        element:<ProtectedRoute><Cart /></ProtectedRoute> ,
       },
       {
         path: "login",
@@ -41,7 +44,7 @@ let router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <Products />,
+        element: <ProtectedRoute><Products /></ProtectedRoute> ,
       },
       {
         path: "*",
@@ -55,7 +58,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <UserContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </UserContextProvider>
     </>
   );
 }

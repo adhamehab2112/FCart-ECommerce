@@ -3,7 +3,11 @@ import style from "./Login.module.css";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { useContext } from "react";
+import { UserContext } from "../../Context/userContext/UserContext";
+
 export default function Login() {
+  let {setUserLogin} = useContext(UserContext);
   let navigate = useNavigate();
   let [spinner,setSpinner] = useState(false);
   let [loginError,setLoginError] = useState("");
@@ -16,6 +20,8 @@ export default function Login() {
         })
         if(response.data.message == "success")
         {
+          localStorage.setItem('userToken',response.data.token);
+          setUserLogin(localStorage.getItem('userToken'));
           navigate("/");
         }
     }
