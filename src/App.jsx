@@ -12,15 +12,16 @@ import Products from "./components/Products/Products";
 import NotFound from "./components/NotFound/NotFound";
 import UserContextProvider from "./Context/userContext/UserContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 let router = createBrowserRouter([
-  { 
+  {
     path: "",
     element: <Layout />,
     children: [
       {
         index: true,
-        element: <ProtectedRoute><Home /></ProtectedRoute> ,
+        element: <ProtectedRoute><Home /></ProtectedRoute>,
       },
       {
         path: "categories",
@@ -28,11 +29,11 @@ let router = createBrowserRouter([
       },
       {
         path: "brands",
-        element:<ProtectedRoute><Brands /></ProtectedRoute> ,
+        element: <ProtectedRoute><Brands /></ProtectedRoute>,
       },
       {
         path: "cart",
-        element:<ProtectedRoute><Cart /></ProtectedRoute> ,
+        element: <ProtectedRoute><Cart /></ProtectedRoute>,
       },
       {
         path: "login",
@@ -44,7 +45,11 @@ let router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <ProtectedRoute><Products /></ProtectedRoute> ,
+        element: <ProtectedRoute><Products /></ProtectedRoute>,
+      },
+      {
+        path: "productDetails/:productId",
+        element: <ProtectedRoute><ProductDetails /></ProtectedRoute>
       },
       {
         path: "*",
